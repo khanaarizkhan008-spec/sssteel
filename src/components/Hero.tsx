@@ -1,0 +1,224 @@
+import { useEffect, useRef, useState, useCallback } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion, AnimatePresence } from 'framer-motion'
+import { TextReveal } from './ui/TextReveal'
+import { MagneticButton } from './ui/MagneticButton'
+import MarqueeSection from './MarqueeSection'
+
+
+gsap.registerPlugin(ScrollTrigger)
+
+const Hero = () => {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [loadedImages, setLoadedImages] = useState<HTMLImageElement[]>([])
+  const [loadProgress, setLoadProgress] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const currentFrameRef = useRef<number>(0)
+  const totalFrames = 184
+
+  // Preload all frames
+  useEffect(() => {
+    const images: HTMLImageElement[] = new Array(totalFrames)
+    let loaded = 0
+
+    for (let i = 1; i <= totalFrames; i++) {
+      const img = new Image()
+      img.src = `/assets/frames/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`
+      img.onload = () => {
+        loaded++
+        images[i - 1] = img
+        setLoadProgress(Math.floor((loaded / totalFrames) * 100))
+        if (loaded === totalFrames) {
+          setLoadedImages([...images])
+          // Small delay to allow paint
+          setTimeout(() => setIsLoaded(true), 300)
+        }
+      }
+      img.onerror = () => {
+        loaded++
+        console.error(`Failed to load frame ${i}`)
+        if (loaded === totalFrames) {
+          setLoadedImages([...images.filter(Boolean)])
+          setTimeout(() => setIsLoaded(true), 300)
+        }
+      }
+    }
+  }, [])
+
+  // Canvas resize handler
+  const resizeCanvas = useCallback(() => {
+    if (!canvasRef.current || loadedImages.length === 0) return
+    const canvas = canvasRef.current
+    const dpr = window.devicePixelRatio || 1
+    const rect = canvas.getBoundingClientRect()
+    canvas.width = rect.width * dpr
+    canvas.height = rect.height * dpr
+    const ctx = canvas.getContext('2d')
+    if (ctx) {
+      ctx.scale(dpr, dpr)
+      drawFrame(ctx, loadedImages[currentFrameRef.current], rect.width, rect.height)
+    }
+  }, [loadedImages])
+
+  // Draw a frame with cover-fit
+  const drawFrame = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasW: number, canvasH: number) => {
+    if (!img) return
+    ctx.clearRect(0, 0, canvasW, canvasH)
+
+    const imgRatio = img.width / img.height
+    const canvasRatio = canvasW / canvasH
+
+    let drawW, drawH, drawX, drawY
+    if (canvasRatio > imgRatio) {
+      drawW = canvasW
+      drawH = canvasW / imgRatio
+      drawX = 0
+      drawY = (canvasH - drawH) / 2
+    } else {
+      drawH = canvasH
+      drawW = canvasH * imgRatio
+      drawX = (canvasW - drawW) / 2
+      drawY = 0
+    }
+
+    ctx.drawImage(img, drawX, drawY, drawW, drawH)
+  }
+
+  // Canvas frame scrubbing animation
+  useEffect(() => {
+    if (loadedImages.length === 0 || !canvasRef.current || !heroRef.current) return
+
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    // Initial resize + draw
+    resizeCanvas()
+
+    // Listen to window resize
+    window.addEventListener('resize', resizeCanvas)
+
+    // Create scroll-triggered animation
+    const scrollTrigger = ScrollTrigger.create({
+      trigger: heroRef.current,
+      start: 'top top',
+      end: `+=${totalFrames * 60}`,
+      scrub: 0.5,
+      pin: true,
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        const frameIndex = Math.min(
+          Math.floor(self.progress * (totalFrames - 1)),
+          totalFrames - 1
+        )
+
+        if (frameIndex !== currentFrameRef.current && loadedImages[frameIndex]) {
+          currentFrameRef.current = frameIndex
+          const rect = canvas.getBoundingClientRect()
+          drawFrame(ctx, loadedImages[frameIndex], rect.width, rect.height)
+        }
+      }
+    })
+
+    return () => {
+      scrollTrigger.kill()
+      window.removeEventListener('resize', resizeCanvas)
+    }
+  }, [loadedImages, resizeCanvas])
+
+  return (
+    <section
+      ref={heroRef}
+      className="relative w-full overflow-hidden bg-midnight-950"
+      id="home"
+    >
+      {/* Frame Scrubber Canvas - Full Screen Pin */}
+      <div className="relative h-screen w-full">
+        {/* Loading indicator (minimal, cinematic intro handles the main loading) */}
+        {!isLoaded && (
+          <div className="absolute inset-0 z-50 bg-midnight-950" />
+        )}
+
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full"
+          style={{ willChange: 'transform' }}
+        />
+
+        {/* Dark overlay gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-midnight-950/95 via-midnight-950/60 to-midnight-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-midnight-950 via-transparent to-midnight-950/40" />
+
+        {/* Subtle animated grid overlay */}
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 69, 0, 0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 69, 0, 0.15) 1px, transparent 1px)
+            `,
+            backgroundSize: '100px 100px',
+          }}
+        />
+
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-6 h-screen flex flex-col justify-center">
+          <div className="max-w-5xl">
+            {/* Kicker */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={isLoaded ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="mb-4 flex items-center gap-4"
+            >
+              <div className="h-[2px] w-12 bg-molten-500" />
+              <span className="uppercase tracking-[0.3em] text-molten-500 font-bold text-xs md:text-sm">
+                SS Steel India Corporation
+              </span>
+            </motion.div>
+
+
+            <TextReveal
+              text="Best Deal in Iron & Steel."
+              className="text-5xl md:text-[5.5rem] lg:text-[6.5rem] font-black     bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/40 leading-[1.05] mb-8 drop-shadow-2xl tracking-tighter"
+              as="h1"
+            />
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1.6 }}
+              className="text-lg md:text-2xl text-white/70 mb-12 max-w-2xl font-light leading-relaxed border-l-2 border-white/10 pl-6"
+            >
+              <span className="text-white font-medium">Creating a Customer for Life.</span><br />
+              Delivering premium industrial strength with uncompromising quality and reliability for your most demanding projects.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1.9 }}
+              className="flex flex-wrap gap-4"
+            >
+              <MagneticButton variant="primary">
+                Get a Quote
+              </MagneticButton>
+              <MagneticButton variant="outline">
+                Explore Products
+              </MagneticButton>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Dual Infinite Marquee Section */}
+      <MarqueeSection />
+    </section>
+  )
+}
+
+export default Hero
