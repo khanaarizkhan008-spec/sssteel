@@ -10,7 +10,7 @@ const products = [
     title: 'HR Coils / Plates',
     description: 'Premium hot-rolled steel coils and plates for heavy-duty industrial applications.',
     specs: ['TATA Astrum', 'E250 / E350', 'IS 2062 Grade', 'CR & GP Sheets', 'Chequered Plates'],
-    image: '/assets/products/hr-coils.png',
+    image: `${import.meta.env.BASE_URL}assets/products/hr-coils.png`,
     accentColor: '#FF6B35',
   },
   {
@@ -18,7 +18,7 @@ const products = [
     title: 'Structural Steel',
     description: 'Complete range of structural materials for construction and fabrication.',
     specs: ['MS Angles up to 250x250x25mm', 'Channels all sizes', 'I-Beams up to 600x210mm', 'Joists & Columns'],
-    image: '/assets/products/structural-steel.png',
+    image: `${import.meta.env.BASE_URL}assets/products/structural-steel.png`,
     accentColor: '#FF4500',
   },
   {
@@ -26,7 +26,7 @@ const products = [
     title: 'Pipes & Tubes',
     description: 'High-quality ERW pipes from India\'s most trusted manufacturers.',
     specs: ['TATA Steel Pipes', 'APL Apollo', 'Round Pipes', 'SHS & RHS Tubes', 'All diameters'],
-    image: '/assets/products/pipes-tubes.png',
+    image: `${import.meta.env.BASE_URL}assets/products/pipes-tubes.png`,
     accentColor: '#E63900',
   },
   {
@@ -34,7 +34,7 @@ const products = [
     title: 'High-Strength Rebars',
     description: 'Thermo-mechanically treated bars for superior construction strength.',
     specs: ['AMMAN-TRY 500 Guard', 'SAIL TMT', 'JINDAL TMT', 'Fe 500 / Fe 550D', 'All diameters'],
-    image: '/assets/products/tmt-bars.png',
+    image: `${import.meta.env.BASE_URL}assets/products/tmt-bars.png`,
     accentColor: '#CC2F00',
   },
 ]

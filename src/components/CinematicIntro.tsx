@@ -82,7 +82,7 @@ const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
           <div className="relative w-[283px] h-[242px] md:w-[354px] md:h-[303px]">
             {/* Main orange S shape (h2) — defines the full bounding box */}
             <motion.img
-              src="/assets/logo h2.png"
+              src={`${import.meta.env.BASE_URL}assets/logo h2.png`}
               alt="SS Steel Main"
               className="absolute inset-0 w-full h-full object-contain"
               style={{ imageRendering: 'crisp-edges' }}
@@ -107,7 +107,7 @@ const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
             {/* Small blue/grey piece (h1) — precisely aligned to right edge, vertically centered */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[49.7%] h-[49.8%]">
               <motion.img
-                src="/assets/logo h1.png"
+                src={`${import.meta.env.BASE_URL}assets/logo h1.png`}
                 alt="SS Steel Accent"
                 className="w-full h-full object-contain"
                 style={{ imageRendering: 'crisp-edges' }}

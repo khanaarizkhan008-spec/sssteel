@@ -25,7 +25,7 @@ const Hero = () => {
 
     for (let i = 1; i <= totalFrames; i++) {
       const img = new Image()
-      img.src = `/assets/frames/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`
+      img.src = `${import.meta.env.BASE_URL}assets/frames/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`
       img.onload = () => {
         loaded++
         images[i - 1] = img

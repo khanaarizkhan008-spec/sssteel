@@ -51,7 +51,7 @@ const Header = ({ onNavigate, activeSection }: HeaderProps) => {
           >
             <h1 className="text-xl md:text-2xl font-bold text-white tracking-wider flex items-center">
               <img
-                src="/assets/logo.png"
+                src={`${import.meta.env.BASE_URL}assets/logo.png`}
                 className="h-[38px] w-auto"
                 alt="Logo"
                 style={{ imageRendering: 'crisp-edges' }}
