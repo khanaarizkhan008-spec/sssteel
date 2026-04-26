@@ -5,11 +5,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { TextReveal } from './ui/TextReveal'
 import { MagneticButton } from './ui/MagneticButton'
 import MarqueeSection from './MarqueeSection'
+import { HomeAdvantage } from './HomeAdvantage'
+import { HomeShowcase } from './HomeShowcase'
+import { HomeCapabilities } from './HomeCapabilities'
 
 
 gsap.registerPlugin(ScrollTrigger)
 
-const Hero = () => {
+interface HeroProps {
+  onNavigate: (section: string) => void
+}
+
+const Hero = ({ onNavigate }: HeroProps) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [loadedImages, setLoadedImages] = useState<HTMLImageElement[]>([])
@@ -181,7 +188,7 @@ const Hero = () => {
 
 
             <TextReveal
-              text="Best Deal in Iron & Steel."
+              text="FORGED IN STRENGTH."
               className="text-5xl md:text-[5.5rem] lg:text-[6.5rem] font-black     bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/40 leading-[1.05] mb-8 drop-shadow-2xl tracking-tighter"
               as="h1"
             />
@@ -204,10 +211,10 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 1.9 }}
               className="flex flex-wrap gap-4"
             >
-              <MagneticButton variant="primary">
+              <MagneticButton variant="primary" onClick={() => onNavigate('contact')}>
                 Get a Quote
               </MagneticButton>
-              <MagneticButton variant="outline">
+              <MagneticButton variant="outline" onClick={() => onNavigate('products')}>
                 Explore Products
               </MagneticButton>
             </motion.div>
@@ -217,6 +224,15 @@ const Hero = () => {
 
       {/* Dual Infinite Marquee Section */}
       <MarqueeSection />
+
+      {/* The Advantage */}
+      <HomeAdvantage />
+
+      {/* The Showcase */}
+      <HomeShowcase />
+
+      {/* Capabilities */}
+      <HomeCapabilities onNavigate={onNavigate} />
     </section>
   )
 }

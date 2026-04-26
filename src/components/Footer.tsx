@@ -1,12 +1,38 @@
 import { motion } from 'framer-motion'
+import { MagneticButton } from './ui/MagneticButton'
 
-const Footer = () => {
+interface FooterProps {
+  onNavigate: (section: string) => void
+}
+
+const Footer = ({ onNavigate }: FooterProps) => {
   const currentYear = new Date().getFullYear()
 
   return (
     <footer className="relative bg-midnight-950 text-white pt-20 pb-8 border-t border-white/5 overflow-hidden">
       {/* Subtle top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-molten-500/50 to-transparent" />
+
+      {/* Massive LET'S BUILD CTA */}
+      <div className="container mx-auto px-6 mb-24 text-center">
+        <h2 className="text-5xl md:text-8xl font-black font-display uppercase tracking-tighter mb-8">
+          Let's <span className="text-molten-500">Build</span>
+        </h2>
+        <p className="text-xl text-white/60 mb-10 max-w-2xl mx-auto font-light">
+          Ready to forge a partnership? Get in touch with our team for premium steel solutions and unbeatable logistics.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <MagneticButton variant="primary" onClick={() => onNavigate('contact')}>
+            <span className="text-sm font-bold uppercase tracking-widest px-8 py-3 block">Get a Quote</span>
+          </MagneticButton>
+          <button
+            onClick={() => onNavigate('contact')}
+            className="text-white hover:text-molten-500 font-bold uppercase tracking-widest text-sm transition-colors border-b border-transparent hover:border-molten-500 pb-1"
+          >
+            Contact Us
+          </button>
+        </div>
+      </div>
 
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
@@ -68,11 +94,21 @@ const Footer = () => {
             <ul className="space-y-3 text-white/50 text-sm">
               <li className="flex items-start gap-2">
                 <span className="text-molten-500 mt-0.5">📍</span>
-                <span>NH-7, Hosur<br />Karnataka, India</span>
+                <a href="https://www.google.com/maps/search/SS+Steel+India+Corporation,+756%2F6-B,+Krishnagiri+Main+Road,+Hosur,+Tamil+Nadu+635109" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  <span>Near ashwin Mahal opposite to anand electricals<br />Hosur,Tamil Nadu</span>
+                </a>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-molten-500 mt-0.5">📞</span>
+                <a href="tel:+916382085337" className="hover:text-white transition-colors">
+                  <span>+91 6382085337</span>
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-molten-500 mt-0.5">📧</span>
-                <span>info@sssteelindia.com</span>
+                <a href="mailto:sales@sssteelindia.com" className="hover:text-white transition-colors">
+                  <span>sales@sssteelindia.com</span>
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-molten-500 mt-0.5">🕐</span>

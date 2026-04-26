@@ -39,7 +39,11 @@ const products = [
   },
 ]
 
-const Products = () => {
+interface ProductsProps {
+  onNavigate: (section: string) => void
+}
+
+const Products = ({ onNavigate }: ProductsProps) => {
   const sectionRef = useRef<HTMLElement>(null)
 
   return (
@@ -71,9 +75,9 @@ const Products = () => {
             Our Arsenal
           </motion.span>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mt-4 mb-6 font-display"
+            className="text-4xl md:text-6xl font-bold text-white mt-4 mb-6 font-display uppercase tracking-tighter"
           >
-            Products We <span className="text-molten-500">Supply</span>
+            Our Heavy <span className="text-molten-500">Arsenal</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto">
             Comprehensive steel solutions for construction, manufacturing, and infrastructure projects
@@ -107,38 +111,45 @@ const Products = () => {
                 </div>
 
                 {/* Content Section */}
-                <div className="flex-1 p-6 md:p-8">
-                  <h3 className="text-2xl font-bold text-white mb-3 font-display">
-                    {product.title}
-                  </h3>
-                  <p className="text-white/60 mb-6 leading-relaxed">
-                    {product.description}
-                  </p>
+                <div className="flex-1 p-6 md:p-8 flex flex-col justify-between group-hover:-translate-y-2 transition-transform duration-500">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-3 font-display">
+                      {product.title}
+                    </h3>
+                    <p className="text-white/60 mb-6 leading-relaxed">
+                      {product.description}
+                    </p>
 
-                  {/* Specs List */}
-                  <ul className="space-y-2">
-                    {product.specs.map((spec, i) => (
-                      <motion.li
-                        key={spec}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.05 }}
-                        className="flex items-center gap-2 text-white/70 text-sm"
-                      >
-                        <span
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: product.accentColor }}
-                        />
-                        {spec}
-                      </motion.li>
-                    ))}
-                  </ul>
+                    {/* Specs List (revealed on hover) */}
+                    <div className="overflow-hidden h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <ul className="space-y-2 mb-6">
+                        {product.specs.map((spec, i) => (
+                          <motion.li
+                            key={spec}
+                            className="flex items-center gap-2 text-white/70 text-sm"
+                          >
+                            <span
+                              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: product.accentColor }}
+                            />
+                            {spec}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => onNavigate('contact')}
+                    className="w-full mt-4 py-3 border border-white/10 rounded-lg text-sm font-bold uppercase tracking-widest text-white hover:bg-molten-500 hover:border-molten-500 transition-colors duration-300"
+                  >
+                    Inquire Now
+                  </button>
                 </div>
 
                 {/* Bottom accent line */}
                 <div
-                  className="h-1 w-0 group-hover:w-full transition-all duration-700 ease-out"
+                  className="h-1 w-0 group-hover:w-full transition-all duration-700 ease-out absolute bottom-0 left-0"
                   style={{
                     background: `linear-gradient(to right, ${product.accentColor}, #FF4500)`,
                   }}
@@ -159,13 +170,13 @@ const Products = () => {
           <p className="text-white/60 mb-6">
             Need custom specifications or bulk orders?
           </p>
-          <a
-            href="#contact"
+          <button
+            onClick={() => onNavigate('contact')}
             className="inline-flex items-center gap-2 text-molten-500 hover:text-molten-400 transition-colors font-medium group"
           >
             Request a Custom Quote
             <span className="transform group-hover:translate-x-2 transition-transform">→</span>
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

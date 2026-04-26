@@ -10,6 +10,7 @@ const Contact = () => {
     email: '',
     phone: '',
     company: '',
+    material: '',
     message: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -19,17 +20,27 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      // Google Apps Script Webhook
+      await fetch('https://script.google.com/macros/s/AKfycby_PLACEHOLDER_KEY/exec', {
+        method: 'POST',
+        mode: 'no-cors', // Needed for Google Forms/Apps script without CORS setup
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+    } catch (err) {
+      console.error('Error submitting form', err)
+    }
 
-    console.log('Form submitted:', formData)
     setIsSubmitting(false)
     setSubmitted(true)
 
     // Reset after 3 seconds
     setTimeout(() => {
       setSubmitted(false)
-      setFormData({ name: '', email: '', phone: '', company: '', message: '' })
+      setFormData({ name: '', email: '', phone: '', company: '', material: '', message: '' })
     }, 3000)
   }
 
@@ -68,7 +79,7 @@ const Contact = () => {
             className="text-4xl md:text-6xl font-bold text-white mt-4 mb-6"
             style={{ fontFamily: 'Syne, sans-serif' }}
           >
-            Start Your <span className="text-molten-500">Project</span>
+            LET'S TALK <span className="text-molten-500">METRICS.</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto">
             Ready to forge something great? Get a free quote for your steel requirements.
@@ -92,8 +103,8 @@ const Contact = () => {
 
               <div className="space-y-6">
                 {/* Address */}
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 rounded-xl bg-midnight-800 border border-white/10 flex items-center justify-center group-hover:border-molten-500/50 transition-colors">
+                <a href="https://www.google.com/maps/search/SS+Steel+India+Corporation,+756%2F6-B,+Krishnagiri+Main+Road,+Hosur,+Tamil+Nadu+635109" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-midnight-800 border border-white/10 flex items-center justify-center group-hover:border-molten-500/50 transition-colors" >
                     <svg className="w-6 h-6 text-molten-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -101,15 +112,14 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Visit Us</h4>
-                    <p className="text-white/60">
-                      NH-7, Hosur<br />
-                      Karnataka 560100, India
+                    <p className="text-white/60 group-hover:text-white transition-colors">
+                      Near ashwin Mahal opposite to anand electricals<br />Hosur,Tamil Nadu
                     </p>
                   </div>
-                </div>
+                </a>
 
                 {/* Phone */}
-                <div className="flex items-start gap-4 group">
+                <a href="tel:+916382085337" className="flex items-start gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-midnight-800 border border-white/10 flex items-center justify-center group-hover:border-molten-500/50 transition-colors">
                     <svg className="w-6 h-6 text-molten-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -117,12 +127,12 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Call Us</h4>
-                    <p className="text-white/60">+91 XXXXX XXXXX</p>
+                    <p className="text-white/60 group-hover:text-white transition-colors">+91 6382085337</p>
                   </div>
-                </div>
+                </a>
 
                 {/* Email */}
-                <div className="flex items-start gap-4 group">
+                <a href="mailto:sales@sssteelindia.com" className="flex items-start gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-midnight-800 border border-white/10 flex items-center justify-center group-hover:border-molten-500/50 transition-colors">
                     <svg className="w-6 h-6 text-molten-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -130,9 +140,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Email Us</h4>
-                    <p className="text-white/60">info@sssteelindia.com</p>
+                    <p className="text-white/60 group-hover:text-white transition-colors">sales@sssteelindia.com</p>
                   </div>
-                </div>
+                </a>
 
                 {/* Hours */}
                 <div className="flex items-start gap-4 group">
@@ -266,6 +276,26 @@ const Contact = () => {
                         placeholder="Your company"
                       />
                     </div>
+                  </div>
+
+                  {/* Required Material Dropdown */}
+                  <div>
+                    <label className="block text-white/70 font-medium mb-2 text-sm uppercase tracking-wider">
+                      Required Material
+                    </label>
+                    <select
+                      value={formData.material}
+                      onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                      className="w-full px-4 py-4 rounded-xl bg-midnight-800/50 border border-white/10 focus:border-molten-500 focus:ring-2 focus:ring-molten-500/20 outline-none transition-all text-white placeholder-white/30 appearance-none"
+                      required
+                    >
+                      <option value="" disabled>Select Material...</option>
+                      <option value="TMT Bars">TMT Bars</option>
+                      <option value="Structural Steel">Structural Steel</option>
+                      <option value="ERW Pipes & Tubes">ERW Pipes & Tubes</option>
+                      <option value="Flat Products">Flat Products (HR/CR/GP)</option>
+                      <option value="Other">Other / Unsure</option>
+                    </select>
                   </div>
 
                   {/* Message */}

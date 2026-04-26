@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import WhyChooseUs from './components/WhyChooseUs'
+import About from './components/About'
 import Products from './components/Products'
 import Authority from './components/Authority'
 import Contact from './components/Contact'
@@ -20,7 +20,9 @@ function App() {
   const [introComplete, setIntroComplete] = useState(false)
 
   useEffect(() => {
-    // Refresh ScrollTrigger after all content loads
+    // Scroll to top and refresh ScrollTrigger when section changes
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+
     const timer = setTimeout(() => {
       ScrollTrigger.refresh()
     }, 1000)
@@ -34,12 +36,12 @@ function App() {
 
   const renderSection = () => {
     switch (activeSection) {
-      case 'home': return <Hero key="home" />
-      case 'about': return <WhyChooseUs key="about" />
-      case 'products': return <Products key="products" />
+      case 'home': return <Hero key="home" onNavigate={setActiveSection} />
+      case 'about': return <About key="about" onNavigate={setActiveSection} />
+      case 'products': return <Products key="products" onNavigate={setActiveSection} />
       case 'quality': return <Authority key="quality" />
       case 'contact': return <Contact key="contact" />
-      default: return <Hero key="home" />
+      default: return <Hero key="home" onNavigate={setActiveSection} />
     }
   }
 
@@ -75,7 +77,7 @@ function App() {
               </AnimatePresence>
             </main>
 
-            <Footer />
+            <Footer onNavigate={setActiveSection} />
           </motion.div>
         )}
       </AnimatePresence>
