@@ -144,9 +144,6 @@ const Hero = ({ onNavigate }: HeroProps) => {
       {/* Frame Scrubber Canvas - Full Screen Pin */}
       <div className="relative h-screen w-full">
         {/* Loading indicator (minimal, cinematic intro handles the main loading) */}
-        {!isLoaded && (
-          <div className="absolute inset-0 z-50 bg-midnight-950" />
-        )}
 
         <canvas
           ref={canvasRef}
