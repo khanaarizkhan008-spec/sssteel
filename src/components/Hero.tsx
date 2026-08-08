@@ -194,7 +194,7 @@ const Hero = ({ onNavigate }: HeroProps) => {
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.6 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
               className="text-lg md:text-2xl text-white/70 mb-12 max-w-2xl font-light leading-relaxed border-l-2 border-white/10 pl-6"
             >
               <span className="text-white font-medium">Creating a Customer for Life.</span><br />
@@ -205,7 +205,7 @@ const Hero = ({ onNavigate }: HeroProps) => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.9 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-wrap gap-4"
             >
               <MagneticButton variant="primary" onClick={() => onNavigate('contact')}>
