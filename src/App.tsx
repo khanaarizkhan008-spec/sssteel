@@ -23,6 +23,38 @@ function App() {
     // Scroll to top and refresh ScrollTrigger when section changes
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
 
+    // Dynamic SEO Titles & Meta Descriptions for each page section
+    const seoTitles: Record<string, { title: string; desc: string }> = {
+      home: {
+        title: 'SS Steel India Corporation | Authorized TATA, JSW & SAIL Steel Distributor',
+        desc: 'SS Steel India Corporation - Premier Iron & Steel Supplier in Hosur & Bengaluru. Authorized dealers for TATA Steel, JSW Steel, SAIL, AMMAN-TRY, and APL Apollo.',
+      },
+      about: {
+        title: 'A Legacy of Steel | About SS Steel India Corporation',
+        desc: 'Discover the company journey of SS Steel India Corporation since 2015. Over 1-acre storage facility on NH-7, Hosur delivering trusted steel nationwide.',
+      },
+      products: {
+        title: 'Our Heavy Arsenal | Products - SS Steel India Corporation',
+        desc: 'Explore our full range of TMT Bars, ERW Steel Pipes, HR/CR Coils & Plates, Structural Beams, Channels, and Angles for industrial construction.',
+      },
+      quality: {
+        title: 'Technical Authority & ISI Quality | SS Steel India Corporation',
+        desc: 'Certified ISI, ISO 9001:2015, and BIS compliant iron and steel products. Trusted quality assurance for major infrastructure projects.',
+      },
+      contact: {
+        title: 'Contact & Get a Free Quote | SS Steel India Corporation',
+        desc: 'Contact SS Steel India Corporation in Hosur on NH-7. Request a free quote for TMT bars, structural steel, and ERW pipes with 24-hour response.',
+      },
+    }
+
+    const currentSeo = seoTitles[activeSection] || seoTitles.home
+    document.title = currentSeo.title
+
+    const metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) {
+      metaDesc.setAttribute('content', currentSeo.desc)
+    }
+
     const timer = setTimeout(() => {
       ScrollTrigger.refresh()
     }, 1000)
@@ -86,5 +118,3 @@ function App() {
 }
 
 export default App
-
-
