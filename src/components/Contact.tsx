@@ -21,17 +21,16 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      // Google Apps Script Webhook
-      await fetch('https://script.google.com/macros/s/AKfycby_PLACEHOLDER_KEY/exec', {
+      // Make.com Webhook
+      await fetch('https://hook.eu1.make.com/66e4724fiv3oyse16o8cwoatywvlxbaz', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData)
       })
     } catch (err) {
-      console.error('Error submitting form', err)
+      console.error('Error submitting form to webhook', err)
     }
 
     setIsSubmitting(false)
