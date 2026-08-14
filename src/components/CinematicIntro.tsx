@@ -68,7 +68,7 @@ const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                   src={`${import.meta.env.BASE_URL}assets/logo h1.png`}
                   alt="SS Steel Accent"
                   className="w-full h-full object-contain"
-                  style={{ imageRendering: 'crisp-edges', transform: 'translate(20px, 33px)' }}
+                  style={{ imageRendering: 'crisp-edges', transform: 'translate(15px, 33px)' }}
                 />
               </div>
             </div>
