@@ -7,45 +7,59 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Midnight Forged Steel Palette
+        // Light Theme Surface Palette (Navy/Slate text & White/Light slate backgrounds)
         'midnight': {
-          50: '#F5F5F7',
-          100: '#E5E5E7',
-          200: '#D4D4D8',
-          300: '#A1A1AA',
-          400: '#71717A',
-          500: '#52525B',
-          600: '#3F3F46',
-          700: '#27272A',
-          800: '#1A1A24',
-          900: '#0A0A0A',
-          950: '#050508',
+          50: '#071325',   // Deepest Navy for high contrast text
+          100: '#0a192f',  // Deep Navy Blue
+          200: '#0f2b48',  // Rich Navy
+          300: '#1e3a8a',  // Navy Accent
+          400: '#334155',  // Dark Slate
+          500: '#475569',  // Medium Slate
+          600: '#94a3b8',  // Border / Muted
+          700: '#cbd5e1',  // Soft Border
+          800: '#f1f5f9',  // Soft Light Gray-Blue Surface
+          900: '#ffffff',  // Pure White Card Surface
+          950: '#f8fafc',  // Light Theme Main Page Background
         },
-        // Molten Safety Orange accents
+        // Mid Dark Green Palette (Primary Accent)
         'molten': {
-          50: '#FFF5F0',
-          100: '#FFE5D5',
-          200: '#FFC5A5',
-          300: '#FF9565',
-          400: '#FF6B35',
-          500: '#FF4500', // Primary accent
-          600: '#E63900',
-          700: '#CC2F00',
-          800: '#992400',
-          900: '#661800',
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#34d399',
+          400: '#236854',  // Lighter Forest Green
+          500: '#1b4d3e',  // Primary Mid Dark Green Accent
+          600: '#155e42',  // Forest Green
+          700: '#10523b',  // Pine Green
+          800: '#093928',  // Deep Forest Green
+          900: '#052419',
         },
-        // Steel tones
+        // Navy Tones
+        'navy': {
+          50: '#f0f7ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#1e4d8c',
+          600: '#163b66',
+          700: '#0f2b48',
+          800: '#0a192f',  // Deep Navy
+          900: '#071325',  // Darkest Navy
+          950: '#030814',
+        },
+        // Steel / Slate tones for Light Mode
         'steel': {
-          50: '#F8FAFC',
-          100: '#F1F5F9',
-          200: '#E2E8F0',
-          300: '#CBD5E1',
-          400: '#94A3B8',
-          500: '#64748B',
+          50: '#ffffff',
+          100: '#f8fafc',
+          200: '#f1f5f9',
+          300: '#e2e8f0',
+          400: '#cbd5e1',
+          500: '#64748b',
           600: '#475569',
           700: '#334155',
-          800: '#1E293B',
-          900: '#0F172A',
+          800: '#1e293b',
+          900: '#0f172a',
         },
       },
       fontFamily: {
@@ -58,8 +72,9 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'metallic': 'linear-gradient(135deg, #1A1A24 0%, #2A2A34 50%, #1A1A24 100%)',
-        'molten-glow': 'radial-gradient(circle, rgba(255,69,0,0.4) 0%, transparent 70%)',
+        'metallic': 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #ffffff 100%)',
+        'molten-glow': 'radial-gradient(circle, rgba(27, 77, 62, 0.25) 0%, transparent 70%)',
+        'navy-glow': 'radial-gradient(circle, rgba(10, 25, 47, 0.15) 0%, transparent 70%)',
       },
       animation: {
         'shimmer': 'shimmer 2s linear infinite',
@@ -87,10 +102,10 @@ export default {
         },
       },
       boxShadow: {
-        'molten': '0 0 20px rgba(255, 69, 0, 0.3), 0 0 40px rgba(255, 69, 0, 0.2)',
-        'molten-lg': '0 0 30px rgba(255, 69, 0, 0.5), 0 0 60px rgba(255, 69, 0, 0.3)',
-        'steel': '0 4px 20px rgba(0, 0, 0, 0.5)',
-        'steel-lg': '0 10px 40px rgba(0, 0, 0, 0.6)',
+        'molten': '0 0 20px rgba(27, 77, 62, 0.25), 0 0 40px rgba(27, 77, 62, 0.15)',
+        'molten-lg': '0 0 30px rgba(27, 77, 62, 0.35), 0 0 60px rgba(27, 77, 62, 0.2)',
+        'steel': '0 4px 20px rgba(10, 25, 47, 0.08)',
+        'steel-lg': '0 10px 40px rgba(10, 25, 47, 0.12)',
       },
     },
   },

@@ -47,9 +47,9 @@ export const MagneticButton = ({
   }
 
   const variantStyles = {
-    primary: 'bg-molten-500 text-white hover:bg-molten-600',
-    secondary: 'bg-midnight-800 text-white border border-midnight-700 hover:border-molten-500',
-    outline: 'bg-transparent text-white border-2 border-white/30 hover:border-molten-500 hover:text-molten-500'
+    primary: 'bg-molten-500 text-white hover:bg-molten-600 shadow-md shadow-molten-500/20',
+    secondary: 'bg-navy-800 text-white hover:bg-navy-900 border border-navy-700 shadow-sm',
+    outline: 'bg-white/80 backdrop-blur-md text-navy-800 border-2 border-navy-800/20 hover:border-molten-500 hover:text-molten-500 hover:bg-molten-50'
   }
 
   return (
@@ -65,11 +65,11 @@ export const MagneticButton = ({
       <div className={`relative rounded-xl ${variant === 'primary' ? 'p-[2px]' : ''}`}>
         {variant === 'primary' && (
           <div
-            className="absolute inset-0 rounded-xl overflow-hidden"
+            className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none"
             style={{
               background: isHovered
-                ? 'linear-gradient(45deg, #FF4500, #FF6B35, #FF8C00, #FF4500)'
-                : 'linear-gradient(45deg, #FF4500, #FF4500)',
+                ? 'linear-gradient(45deg, #1b4d3e, #155e42, #0a192f, #1b4d3e)'
+                : 'linear-gradient(45deg, #1b4d3e, #1b4d3e)',
               backgroundSize: '300% 300%',
               animation: isHovered ? 'shinyBorder 2s linear infinite' : 'none',
             }}
@@ -84,11 +84,10 @@ export const MagneticButton = ({
             px-8 py-4 rounded-xl font-semibold text-base
             transition-all duration-300 
             ${variantStyles[variant]}
-            ${variant === 'primary' ? 'shadow-lg shadow-molten-500/25' : ''}
             ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
           `}
-          whileHover={disabled ? {} : { scale: 1.05 }}
-          whileTap={disabled ? {} : { scale: 0.95 }}
+          whileHover={disabled ? {} : { scale: 1.03 }}
+          whileTap={disabled ? {} : { scale: 0.97 }}
         >
           <span className="relative z-10 flex items-center gap-2">
             {children}
@@ -97,11 +96,11 @@ export const MagneticButton = ({
           {/* Inner glow on hover */}
           {isHovered && variant === 'primary' && !disabled && (
             <motion.div
-              className="absolute inset-0 rounded-xl"
+              className="absolute inset-0 rounded-xl pointer-events-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               style={{
-                background: 'radial-gradient(circle at center, rgba(255, 107, 53, 0.3) 0%, transparent 70%)',
+                background: 'radial-gradient(circle at center, rgba(21, 94, 66, 0.4) 0%, transparent 70%)',
               }}
             />
           )}

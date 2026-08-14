@@ -49,9 +49,6 @@ const About = ({ onNavigate }: AboutProps) => {
 
     if (!track || !container) return
 
-    // Calculate how far to move left
-    // We want to scroll enough to see all milestones.
-    // The width of the track is determined by the number of items and padding.
     const scrollWidth = track.scrollWidth
     const viewportWidth = window.innerWidth
     const xToScroll = scrollWidth - viewportWidth
@@ -75,12 +72,12 @@ const About = ({ onNavigate }: AboutProps) => {
   }, [])
 
   return (
-    <div className="bg-midnight-950 text-white min-h-screen overflow-hidden">
+    <div className="bg-midnight-950 text-navy-900 min-h-screen overflow-hidden">
       {/* Hero Section */}
       <section className="relative h-[80vh] flex flex-col items-center justify-center pt-20 px-6">
-        <AnimatedGrid cellSize={60} opacity={0.05} color="#FF4500" />
+        <AnimatedGrid cellSize={60} opacity={0.04} color="#1b4d3e" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-molten-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-molten-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-navy-500/10 rounded-full blur-3xl pointer-events-none" />
         
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -88,10 +85,10 @@ const About = ({ onNavigate }: AboutProps) => {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="text-center z-10"
         >
-          <h1 className="text-5xl md:text-8xl font-black font-display uppercase tracking-tight mb-6">
+          <h1 className="text-5xl md:text-8xl font-black font-display uppercase tracking-tight mb-6 text-navy-900">
             A Legacy of <span className="text-molten-500">Steel</span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/60 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-xl md:text-2xl text-navy-800/70 max-w-2xl mx-auto font-light leading-relaxed">
             From our foundation to becoming a trusted authority in the industry, our journey is forged in strength and built on trust.
           </p>
         </motion.div>
@@ -102,13 +99,13 @@ const About = ({ onNavigate }: AboutProps) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
         >
-          <span className="text-sm tracking-[0.2em] text-white/40 uppercase">Scroll to explore</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-molten-500 to-transparent" />
+          <span className="text-sm tracking-[0.2em] text-navy-800/50 uppercase font-semibold">Scroll to explore</span>
+          <div className="w-[2px] h-12 bg-gradient-to-b from-molten-500 to-transparent" />
         </motion.div>
       </section>
 
       {/* Horizontal Scroll Timeline Container */}
-      <div ref={containerRef} className="h-screen w-full relative overflow-hidden bg-midnight-950 flex items-center">
+      <div ref={containerRef} className="h-screen w-full relative overflow-hidden bg-slate-100/90 flex items-center border-t border-b border-slate-200">
         {/* The Track that moves horizontally */}
         <div 
           ref={trackRef} 
@@ -116,8 +113,8 @@ const About = ({ onNavigate }: AboutProps) => {
           style={{ width: 'fit-content' }}
         >
           {/* Glowing continuous line */}
-          <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-white/10 -translate-y-1/2">
-             <div className="h-full bg-gradient-to-r from-transparent via-molten-500 to-transparent w-full opacity-50 shadow-[0_0_15px_rgba(255,69,0,0.5)]" />
+          <div className="absolute left-0 right-0 top-1/2 h-[3px] bg-navy-900/10 -translate-y-1/2">
+             <div className="h-full bg-gradient-to-r from-transparent via-molten-500 to-transparent w-full opacity-80 shadow-[0_0_15px_rgba(27,77,62,0.4)]" />
           </div>
 
           {milestones.map((milestone, index) => (
@@ -126,17 +123,17 @@ const About = ({ onNavigate }: AboutProps) => {
               className="flex-shrink-0 w-[80vw] md:w-[40vw] flex flex-col items-center justify-center relative"
             >
               {/* Node on the line */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-midnight-950 border-4 border-molten-500 rounded-full z-10 shadow-[0_0_15px_rgba(255,69,0,0.8)]" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-white border-4 border-molten-500 rounded-full z-10 shadow-[0_0_15px_rgba(27,77,62,0.5)]" />
               
               <div className={`w-full max-w-md px-8 ${index % 2 === 0 ? 'mb-64' : 'mt-64'}`}>
-                <div className="glass-dark p-8 border border-white/10 rounded-2xl relative group hover:border-molten-500/50 transition-colors duration-500">
-                  <div className="text-molten-500 font-display text-4xl font-black mb-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                <div className="bg-white/95 p-8 border border-slate-200/80 rounded-2xl relative group hover:border-molten-500/60 shadow-lg hover:shadow-xl transition-all duration-500">
+                  <div className="text-molten-500 font-display text-4xl font-black mb-2 opacity-90 group-hover:opacity-100 transition-opacity">
                     {milestone.year}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-2xl font-bold text-navy-900 mb-4 font-display">
                     {milestone.title}
                   </h3>
-                  <p className="text-white/60 leading-relaxed">
+                  <p className="text-navy-800/70 leading-relaxed font-light">
                     {milestone.description}
                   </p>
                 </div>
@@ -148,9 +145,9 @@ const About = ({ onNavigate }: AboutProps) => {
 
       {/* Bottom CTA */}
       <section className="py-32 px-6 flex flex-col items-center justify-center bg-midnight-950 text-center relative overflow-hidden">
-        <AnimatedGrid cellSize={60} opacity={0.03} color="#FF4500" />
+        <AnimatedGrid cellSize={60} opacity={0.04} color="#1b4d3e" />
         <div className="relative z-10">
-          <h2 className="text-4xl md:text-6xl font-display font-black text-white mb-10">
+          <h2 className="text-4xl md:text-6xl font-display font-black text-navy-900 mb-10">
             Ready to work with the <span className="text-molten-500">best?</span>
           </h2>
           <MagneticButton variant="primary" onClick={() => onNavigate('contact')}>

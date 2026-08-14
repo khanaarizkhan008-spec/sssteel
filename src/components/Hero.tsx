@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { TextReveal } from './ui/TextReveal'
 import { MagneticButton } from './ui/MagneticButton'
 import MarqueeSection from './MarqueeSection'
 import { HomeAdvantage } from './HomeAdvantage'
 import { HomeShowcase } from './HomeShowcase'
 import { HomeCapabilities } from './HomeCapabilities'
-
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -39,7 +38,6 @@ const Hero = ({ onNavigate }: HeroProps) => {
         setLoadProgress(Math.floor((loaded / totalFrames) * 100))
         if (loaded === totalFrames) {
           setLoadedImages([...images])
-          // Small delay to allow paint
           setTimeout(() => setIsLoaded(true), 300)
         }
       }
@@ -101,13 +99,9 @@ const Hero = ({ onNavigate }: HeroProps) => {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Initial resize + draw
     resizeCanvas()
-
-    // Listen to window resize
     window.addEventListener('resize', resizeCanvas)
 
-    // Create scroll-triggered animation
     const scrollTrigger = ScrollTrigger.create({
       trigger: heroRef.current,
       start: 'top top',
@@ -138,30 +132,28 @@ const Hero = ({ onNavigate }: HeroProps) => {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden bg-midnight-950"
+      className="relative w-full overflow-hidden bg-midnight-950 text-navy-900"
       id="home"
     >
       {/* Frame Scrubber Canvas - Full Screen Pin */}
       <div className="relative h-screen w-full">
-        {/* Loading indicator (minimal, cinematic intro handles the main loading) */}
-
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full opacity-60 mix-blend-multiply"
           style={{ willChange: 'transform' }}
         />
 
-        {/* Dark overlay gradient for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-midnight-950/95 via-midnight-950/60 to-midnight-950/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-midnight-950 via-transparent to-midnight-950/40" />
+        {/* Light overlay gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-midnight-950/95 via-midnight-950/80 to-midnight-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-midnight-950 via-transparent to-midnight-950/30" />
 
-        {/* Subtle animated grid overlay */}
+        {/* Subtle animated grid overlay - Green tint */}
         <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
+          className="absolute inset-0 opacity-20 pointer-events-none"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 69, 0, 0.15) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 69, 0, 0.15) 1px, transparent 1px)
+              linear-gradient(rgba(27, 77, 62, 0.12) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(27, 77, 62, 0.12) 1px, transparent 1px)
             `,
             backgroundSize: '100px 100px',
           }}
@@ -173,8 +165,8 @@ const Hero = ({ onNavigate }: HeroProps) => {
             {/* Kicker */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
-              animate={isLoaded ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.2 }}
+              animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-4 flex items-center gap-4"
             >
               <div className="h-[2px] w-12 bg-molten-500" />
@@ -183,29 +175,28 @@ const Hero = ({ onNavigate }: HeroProps) => {
               </span>
             </motion.div>
 
-
             <TextReveal
               text="FORGED IN STRENGTH."
-              className="text-5xl md:text-[5.5rem] lg:text-[6.5rem] font-black     bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/40 leading-[1.05] mb-8 drop-shadow-2xl tracking-tighter"
+              className="text-5xl md:text-[5.5rem] lg:text-[6.5rem] font-black bg-clip-text bg-gradient-to-br from-navy-900 via-navy-800 to-molten-500 leading-[1.05] mb-8 drop-shadow-sm tracking-tighter"
               as="h1"
             />
 
             {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
-              animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-2xl text-white/70 mb-12 max-w-2xl font-light leading-relaxed border-l-2 border-white/10 pl-6"
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-lg md:text-2xl text-navy-800/80 mb-12 max-w-2xl font-light leading-relaxed border-l-2 border-molten-500/40 pl-6"
             >
-              <span className="text-white font-medium">Creating a Customer for Life.</span><br />
+              <span className="text-navy-900 font-semibold">Creating a Customer for Life.</span><br />
               Delivering premium industrial strength with uncompromising quality and reliability for your most demanding projects.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap gap-4"
             >
               <MagneticButton variant="primary" onClick={() => onNavigate('contact')}>

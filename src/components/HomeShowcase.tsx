@@ -4,7 +4,7 @@ import { useRef } from 'react'
 const showcaseItems = [
   {
     title: 'S H E E T S',
-    image: '/assets/products/hr-coils.png', // Fallback to HR Coils image if available or use a solid background
+    image: '/assets/products/hr-coils.png',
   },
   {
     title: 'P I P E S',
@@ -27,14 +27,14 @@ const ParallaxImage = ({ item }: { item: typeof showcaseItems[0] }) => {
   const y = useTransform(scrollYProgress, [0, 1], ['-20%', '20%'])
 
   return (
-    <div ref={ref} className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden flex items-center justify-center border-b border-white/5">
+    <div ref={ref} className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden flex items-center justify-center border-b border-slate-200">
       <motion.div 
         className="absolute inset-0 z-0"
         style={{ y, backgroundImage: `url(${import.meta.env.BASE_URL}${item.image.replace('/', '')})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
-        <div className="absolute inset-0 bg-midnight-950/70 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-molten-900/60 to-navy-950/80 mix-blend-multiply" />
       </motion.div>
-      <h3 className="relative z-10 text-6xl md:text-[10vw] font-black font-display text-white opacity-90 tracking-widest drop-shadow-2xl">
+      <h3 className="relative z-10 text-6xl md:text-[10vw] font-black font-display text-white opacity-95 tracking-widest drop-shadow-2xl">
         {item.title}
       </h3>
     </div>

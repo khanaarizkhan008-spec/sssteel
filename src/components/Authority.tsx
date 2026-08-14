@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -55,14 +55,14 @@ const Authority = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 bg-midnight-900 overflow-hidden"
+      className="relative py-32 bg-midnight-950 overflow-hidden"
       id="quality"
     >
       {/* Background */}
-      <AnimatedGrid cellSize={40} opacity={0.04} color="#FF4500" />
+      <AnimatedGrid cellSize={40} opacity={0.04} color="#1b4d3e" />
 
       {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-molten-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-molten-500/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -78,17 +78,16 @@ const Authority = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-molten-500 text-sm uppercase tracking-widest font-semibold"
+            className="text-molten-500 text-sm uppercase tracking-widest font-bold"
           >
             Technical Authority
           </motion.span>
           <h2
-            className="text-4xl md:text-6xl font-bold text-white mt-4 mb-6"
-            style={{ fontFamily: 'Syne, sans-serif' }}
+            className="text-4xl md:text-6xl font-bold text-navy-900 mt-4 mb-6 font-display"
           >
             Industry-Leading <span className="text-molten-500">Specifications</span>
           </h2>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto">
+          <p className="text-xl text-navy-800/70 max-w-2xl mx-auto font-light">
             Certified quality meeting national and international standards
           </p>
         </motion.div>
@@ -105,15 +104,15 @@ const Authority = () => {
               className="text-center group"
             >
               <div className="relative">
-                <div className="text-5xl md:text-7xl font-bold text-white mb-2 group-hover:text-molten-500 transition-colors duration-300">
+                <div className="text-5xl md:text-7xl font-bold text-navy-900 mb-2 group-hover:text-molten-500 transition-colors duration-300 font-display">
                   <span ref={(el) => (countersRef.current[index] = el)}>0</span>
                   <span className="text-2xl md:text-3xl text-molten-500">{stat.suffix}</span>
                 </div>
                 {stat.unit && (
-                  <div className="text-lg md:text-xl text-molten-500/80 font-medium">{stat.unit}</div>
+                  <div className="text-lg md:text-xl text-molten-500 font-medium">{stat.unit}</div>
                 )}
               </div>
-              <p className="text-white/60 text-sm md:text-base mt-4 uppercase tracking-wider">
+              <p className="text-navy-800/60 text-sm md:text-base mt-4 uppercase tracking-wider font-semibold">
                 {stat.label}
               </p>
 
@@ -131,9 +130,9 @@ const Authority = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="glass-dark rounded-2xl p-8 md:p-12 border border-white/5 mb-24"
+          className="glass-dark rounded-3xl p-8 md:p-12 border border-molten-500/20 mb-24 shadow-lg bg-white/90"
         >
-          <h3 className="text-2xl font-bold text-white text-center mb-8">
+          <h3 className="text-2xl font-bold text-navy-900 text-center mb-8 font-display">
             Certified to <span className="text-molten-500">Excellence</span>
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -149,10 +148,10 @@ const Authority = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center p-6 rounded-xl bg-midnight-800/50 border border-white/5 hover:border-molten-500/30 transition-colors"
+                className="text-center p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-molten-500/50 hover:bg-emerald-50/50 transition-all duration-300 shadow-sm"
               >
-                <div className="text-3xl font-bold text-molten-500 mb-2">{item.cert}</div>
-                <div className="text-white/50 text-sm">{item.desc}</div>
+                <div className="text-3xl font-bold text-molten-500 mb-2 font-display">{item.cert}</div>
+                <div className="text-navy-800/70 text-sm font-medium">{item.desc}</div>
               </motion.div>
             ))}
           </div>
@@ -167,15 +166,15 @@ const Authority = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-8"
           >
-            <span className="text-white/40 text-sm uppercase tracking-widest">
+            <span className="text-navy-800/60 text-sm uppercase tracking-widest font-bold">
               Authorized Partner For
             </span>
           </motion.div>
 
           <div className="relative py-8">
             {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-midnight-900 to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-midnight-900 to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-midnight-950 to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-midnight-950 to-transparent z-10" />
 
             <InfiniteMarquee
               items={partnerBrands}

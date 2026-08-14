@@ -40,7 +40,7 @@ function hexToRgb(hex: string): string {
   if (result) {
     return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
   }
-  return '255, 69, 0' // Default to molten orange
+  return '27, 77, 62' // Default to mid-dark green
 }
 
 export default AnimatedGrid

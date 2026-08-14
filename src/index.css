@@ -41,8 +41,8 @@ html {
 /* Hide scrollbar for IE, Edge and Firefox */
 body {
   font-family: 'Outfit', sans-serif;
-  background-color: #0A0A0A;
-  color: #E5E5E5;
+  background-color: #f8fafc;
+  color: #0f2b48;
   overflow-x: hidden;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -56,6 +56,7 @@ h5,
 h6 {
   font-family: 'Boska', serif;
   font-weight: 700;
+  color: #0a192f;
 }
 
 /* Split text animation classes */
@@ -74,11 +75,11 @@ h6 {
   display: inline-block;
 }
 
-/* Animated grid background */
+/* Animated grid background - Mid Dark Green tint */
 .animated-grid {
   background-image:
-    linear-gradient(rgba(255, 69, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 69, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(27, 77, 62, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 77, 62, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
   background-position: 0 0;
   animation: gridMove 20s linear infinite;
@@ -109,7 +110,7 @@ h6 {
   height: 100%;
   background: linear-gradient(90deg,
       transparent,
-      rgba(255, 255, 255, 0.1),
+      rgba(27, 77, 62, 0.15),
       transparent);
   transition: left 0.5s ease;
   pointer-events: none;
@@ -119,10 +120,10 @@ h6 {
   left: 100%;
 }
 
-/* Shiny button gradient border */
+/* Shiny button gradient border - Mid Dark Green & Navy Blue */
 .shiny-button {
   position: relative;
-  background: linear-gradient(135deg, #1A1A24 0%, #0A0A0A 100%);
+  background: linear-gradient(135deg, #1b4d3e 0%, #0a192f 100%);
   overflow: hidden;
 }
 
@@ -133,7 +134,7 @@ h6 {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #FF4500, #FF6B35, #FF4500, #FF6B35);
+  background: linear-gradient(45deg, #1b4d3e, #0a192f, #1b4d3e, #155e42);
   background-size: 400% 400%;
   border-radius: inherit;
   z-index: -1;
@@ -154,19 +155,21 @@ h6 {
   }
 }
 
-/* Glassmorphism */
+/* Glassmorphism for Light Mode */
 .glass {
-  background: rgba(26, 26, 36, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(10, 25, 47, 0.08);
+  box-shadow: 0 10px 30px rgba(10, 25, 47, 0.04);
 }
 
 .glass-dark {
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 69, 0, 0.2);
+  border: 1px solid rgba(27, 77, 62, 0.18);
+  box-shadow: 0 12px 35px rgba(10, 25, 47, 0.06);
 }
 
 /* Text reveal animation */
@@ -185,27 +188,27 @@ h6 {
   opacity: 0;
 }
 
-/* Molten glow effect */
+/* Mid Dark Green glow effect */
 .molten-glow {
-  box-shadow: 0 0 20px rgba(255, 69, 0, 0.3),
-    0 0 40px rgba(255, 69, 0, 0.2),
-    0 0 60px rgba(255, 69, 0, 0.1);
+  box-shadow: 0 0 20px rgba(27, 77, 62, 0.3),
+    0 0 40px rgba(27, 77, 62, 0.2),
+    0 0 60px rgba(27, 77, 62, 0.1);
 }
 
 .molten-glow:hover {
-  box-shadow: 0 0 30px rgba(255, 69, 0, 0.5),
-    0 0 60px rgba(255, 69, 0, 0.3),
-    0 0 90px rgba(255, 69, 0, 0.2);
+  box-shadow: 0 0 30px rgba(27, 77, 62, 0.5),
+    0 0 60px rgba(27, 77, 62, 0.3),
+    0 0 90px rgba(27, 77, 62, 0.2);
 }
 
 /* Metallic sheen */
 .metallic-sheen {
   background: linear-gradient(135deg,
-      #1A1A24 0%,
-      #2A2A34 25%,
-      #1A1A24 50%,
-      #2A2A34 75%,
-      #1A1A24 100%);
+      #ffffff 0%,
+      #f1f5f9 25%,
+      #ffffff 50%,
+      #f1f5f9 75%,
+      #ffffff 100%);
   background-size: 200% 200%;
   animation: metallicShimmer 3s ease-in-out infinite;
 }
@@ -222,18 +225,18 @@ h6 {
   }
 }
 
-/* Cursor follower effect */
+/* Cursor follower effect - Green & Navy tint */
 .cursor-follower {
   position: absolute;
   width: 200px;
   height: 200px;
   background: radial-gradient(circle,
-      rgba(255, 69, 0, 0.15) 0%,
+      rgba(27, 77, 62, 0.12) 0%,
       transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  mix-blend-mode: screen;
+  mix-blend-mode: multiply;
 }
 
 /* Infinite marquee */
@@ -274,13 +277,13 @@ h6 {
   }
 }
 
-/* Selection color */
+/* Selection color - Mid Dark Green */
 ::selection {
-  background: #FF4500;
+  background: #1b4d3e;
   color: #FFFFFF;
 }
 
 ::-moz-selection {
-  background: #FF4500;
+  background: #1b4d3e;
   color: #FFFFFF;
 }

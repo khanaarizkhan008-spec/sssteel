@@ -9,7 +9,6 @@ interface HeaderProps {
 
 const Header = ({ onNavigate, activeSection }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const { scrollY } = useScroll()
 
@@ -34,8 +33,9 @@ const Header = ({ onNavigate, activeSection }: HeaderProps) => {
           width: isScrolled ? 'auto' : '100%',
           maxWidth: isScrolled ? '800px' : '1400px',
           borderRadius: isScrolled ? '100px' : '16px',
-          backgroundColor: isScrolled ? 'rgba(10, 10, 10, 0.8)' : 'rgba(10, 10, 10, 0)',
-          border: isScrolled ? '1px solid rgba(255, 69, 0, 0.2)' : '1px solid rgba(255, 255, 255, 0)',
+          backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.92)' : 'rgba(255, 255, 255, 0)',
+          border: isScrolled ? '1px solid rgba(27, 77, 62, 0.2)' : '1px solid rgba(10, 25, 47, 0)',
+          boxShadow: isScrolled ? '0 10px 30px rgba(10, 25, 47, 0.08)' : 'none',
           paddingLeft: isScrolled ? '24px' : '0px',
           paddingRight: isScrolled ? '24px' : '0px',
         }}
@@ -49,32 +49,33 @@ const Header = ({ onNavigate, activeSection }: HeaderProps) => {
             onClick={() => onNavigate('home')}
             className="relative group cursor-pointer flex-shrink-0"
           >
-            <h1 className="text-xl md:text-2xl font-bold text-white tracking-wider flex items-center">
+            <h1 className="text-xl md:text-2xl font-bold text-navy-900 tracking-wider flex items-center">
               <img
                 src={`${import.meta.env.BASE_URL}assets/logo.png`}
-                className="h-[38px] w-auto"
+                className="h-[38px] w-auto drop-shadow-sm"
                 alt="Logo"
                 style={{ imageRendering: 'crisp-edges' }}
               />
-              {!isScrolled && <span className="hidden sm:inline font-display"></span>}
+              {!isScrolled && <span className="hidden sm:inline font-display text-navy-900 ml-2">SS Steel</span>}
             </h1>
           </motion.div>
 
           {/* Desktop Navigation - Hidden on Mobile */}
           <motion.nav layout className="hidden md:flex items-center gap-6 lg:gap-8 mx-8">
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <motion.button
                 layout
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`relative py-1 text-sm uppercase tracking-wider font-medium transition-colors duration-300 group ${activeSection === item.id ? 'text-molten-500' : 'text-white/60 hover:text-white'
-                  }`}
+                className={`relative py-1 text-sm uppercase tracking-wider font-semibold transition-colors duration-300 group ${
+                  activeSection === item.id ? 'text-molten-500' : 'text-navy-800/70 hover:text-navy-900'
+                }`}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-molten-500"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-molten-500 rounded-full"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -87,7 +88,7 @@ const Header = ({ onNavigate, activeSection }: HeaderProps) => {
             layout
             className="hidden md:block overflow-hidden"
             animate={{
-              scale: isScrolled ? 0.75 : 1,
+              scale: isScrolled ? 0.85 : 1,
             }}
             transition={{ type: 'spring', stiffness: 350, damping: 35 }}
             style={{ transformOrigin: 'right center' }}
@@ -103,5 +104,3 @@ const Header = ({ onNavigate, activeSection }: HeaderProps) => {
 }
 
 export default Header
-
-

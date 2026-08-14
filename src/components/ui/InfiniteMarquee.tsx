@@ -47,7 +47,7 @@ export const InfiniteMarquee = ({
         {duplicatedItems.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 text-4xl md:text-6xl font-bold text-white/15 hover:text-molten-500/50 transition-colors duration-300 cursor-default select-none px-4"
+            className="flex-shrink-0 text-4xl md:text-6xl font-bold text-navy-900/20 hover:text-molten-500 transition-colors duration-300 cursor-default select-none px-4"
             style={{ fontFamily: 'Syne, sans-serif' }}
           >
             {item}
