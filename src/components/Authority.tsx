@@ -16,11 +16,12 @@ const stats = [
 
 const partnerBrands = [
   'TATA STEEL',
-  'JSW',
+  'JSW STEEL',
   'SAIL',
   'AMMAN-TRY',
   'APL APOLLO',
-  'JINDAL',
+  'JINDAL PANTHER',
+  'RINL VIZAG',
 ]
 
 const Authority = () => {
@@ -179,6 +180,7 @@ const Authority = () => {
             <InfiniteMarquee
               items={partnerBrands}
               speed={25}
+              useLogos={true}
               className="py-4"
             />
           </div>

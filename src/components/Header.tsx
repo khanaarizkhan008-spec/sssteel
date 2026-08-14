@@ -52,11 +52,11 @@ const Header = ({ onNavigate, activeSection }: HeaderProps) => {
             <h1 className="text-xl md:text-2xl font-bold text-navy-900 tracking-wider flex items-center">
               <img
                 src={`${import.meta.env.BASE_URL}assets/logo.png`}
-                className="h-[38px] w-auto drop-shadow-sm"
+                className="h-[50px] w-auto drop-shadow-sm"
                 alt="Logo"
                 style={{ imageRendering: 'crisp-edges' }}
               />
-              {!isScrolled && <span className="hidden sm:inline font-display text-navy-900 ml-2">SS Steel</span>}
+              {!isScrolled && <span className="hidden sm:inline font-display text-navy-900 ml-2"></span>}
             </h1>
           </motion.div>
 
